@@ -1,0 +1,21 @@
+# shell module detail
+# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html 
+---
+- name: basic linux commands
+  hosts: localhost
+  connection: local # default connection value is ssh. we have to change it
+  vars:
+  # dizin adı değişkende tutularak yazım ve bakımı kolaylaştırılmıştır
+    base_path: "/tmp/semaphore/bitbucket-repo-docker-install/"
+  tasks:
+
+  - name: clear directory
+    file:
+      state: absent
+      path: "{{ base_path }}"
+  
+  - name:  recreate directory
+    file:
+      path: "{{ base_path }}"
+      state: directory
+      mode: 0777

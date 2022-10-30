@@ -1,0 +1,7 @@
+---
+- name: docker login
+  hosts: all
+  become: yes
+  tasks:
+    - name: cmd docker-compose up -d
+      command: chdir=/app/ docker-compose up -d

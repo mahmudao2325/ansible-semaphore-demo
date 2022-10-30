@@ -1,0 +1,17 @@
+# shell module detail
+# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html 
+---
+- name: basic linux commands
+  hosts: all
+
+  tasks:
+
+  - name:
+    debug:
+      msg: "First example - kind of hello world example"
+
+  - name: "Execute multiple commands"
+    shell: |
+      whoami
+      pwd
+      ls

@@ -1,0 +1,39 @@
+# 
+- name: create docker-compose
+  hosts: all
+  become: yes
+  vars:
+    target_directory : "/app"
+    target_file : "docker-compose.yml"
+    docker_compose_content: |
+      version: '3.3'
+      services:
+        portainer-ce:
+            ports:
+                - '8000:8000'
+                - '9443:9443'
+                - '9000:9000'
+            container_name: portainer
+            restart: always
+            volumes:
+                - '/var/run/docker.sock:/var/run/docker.sock'
+                - 'portainer_data:/data'
+            image: 'portainer/portainer-ce:latest'
+      
+
+  tasks:
+  
+    - name: Creates directory
+      file:
+        path: "{{ target_directory }}"
+        state: directory
+        mode: 0777
+        recurse: yes
+
+    - name: create docker-compose
+      ansible.builtin.copy:
+        content: "{{ docker_compose_content }}"
+        dest: "{{ target_path }}/{{target_file}}"
+        owner: appadmin
+        group: appadmin
+        mode: '0777'

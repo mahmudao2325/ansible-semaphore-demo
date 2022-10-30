@@ -1,0 +1,9 @@
+# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html
+---
+- name: basic linux commands
+  hosts: all
+
+  tasks:
+
+  - name: Example from an Ansible Playbook
+    ansible.builtin.ping:
