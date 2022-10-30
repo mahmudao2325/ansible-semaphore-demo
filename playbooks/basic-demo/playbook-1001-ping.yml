@@ -3,6 +3,9 @@
 - name: basic linux commands
   hosts: all
   become: yes
+  # https://stackoverflow.com/a/51733718/19333166
+  vars:
+    ansible_host_key_checking: false
   tasks:
 
   - name: Example from an Ansible Playbook
